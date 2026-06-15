@@ -1,0 +1,96 @@
+@baseUrl = http://localhost:4000
+
+// USERS
+GET {{baseUrl}}/users
+###
+
+GET {{baseUrl}}/users/2
+###
+
+POST {{baseUrl}}/users
+Content-Type: application/json
+
+{
+    "name": "Mahar",
+    "email": "mahar@gmail.com",
+    "gender": "Male"
+}
+###
+
+PATCH {{baseUrl}}/users/1
+Content-Type: application/json
+
+{
+    "name": "Mahar OG",
+    "email": "mahar@gmail.com",
+    "gender": "Male"
+}
+###
+
+DELETE {{baseUrl}}/users/2
+###
+// END USERS
+
+// PRODUK
+GET {{baseUrl}}/produk
+###
+
+GET {{baseUrl}}/produk/2
+###
+
+POST {{baseUrl}}/produk
+Content-Type: application/json
+
+{
+    "nama": "Bakso Keju",
+    "kategori": "Bakso",
+    "deskripsi": "Bakso dengan potongan keju di dalamnya. Baksonya bertekstur lembut dan kenyal"
+}
+###
+
+PATCH {{baseUrl}}/produk/2
+Content-Type: application/json
+
+{
+    "nama": "Bakso Urat",
+    "kategori": "Bakso",
+    "deskripsi": "Bakso dengan potongan keju di dalamnya. Baksonya bertekstur lembut dan kenyal"
+}
+###
+
+DELETE {{baseUrl}}/produk/2
+###
+// END PRODUK
+
+// RESEP
+GET {{baseUrl}}/resep
+###
+
+GET {{baseUrl}}/resep/2
+###
+
+POST {{baseUrl}}/resep
+Content-Type: application/json
+
+{
+    "nama": "Bakso Kuah Cuanki Khas Yen",
+    "desc": "Resep cuanki instan premium dengan kuah kaldu sapi asli yang gurih dan segar.",
+    "bahan": "1 bungkus Bakso Yen, cuanki tahu, siomay kering, bawang goreng, seledri.",
+    "cara": "Rebus air kaldu hingga mendidih, masukkan bakso dan cuanki, sajikan dengan taburan bawang goreng."
+}
+###
+
+PATCH {{baseUrl}}/resep/1
+Content-Type: application/json
+
+{
+    "nama": "Bakso Cuanki Abang-abang",
+    "desc": "Resep cuanki instan premium dengan kuah kaldu sapi asli yang gurih dan segar.",
+    "bahan": "1 bungkus Bakso Yen, cuanki tahu, siomay kering, bawang goreng, seledri.",
+    "cara": "Rebus air kaldu hingga mendidih, masukkan bakso dan cuanki, sajikan dengan taburan bawang goreng."
+}
+###
+
+DELETE {{baseUrl}}/resep/2
+###
+// END RESEP
