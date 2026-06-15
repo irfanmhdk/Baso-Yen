@@ -49,7 +49,6 @@ const AdminResep = () => {
     const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-        // Hapus preview URL yang lama dari memori jika ada sebelum membuat yang baru
         if (previewUrl && !previewUrl.startsWith('http')) {
             URL.revokeObjectURL(previewUrl);
         }
@@ -63,7 +62,6 @@ const openAddModal = () => {
     setModalType("add");
     setFormData({ nama: "", kategori: "", desc: "", bahan: "", cara: "" });
     
-    // Revoke object URL jika ada sebelum mengosongkan state
     if (previewUrl && !previewUrl.startsWith('http')) {
         URL.revokeObjectURL(previewUrl);
     }
@@ -79,26 +77,21 @@ const handleSubmit = async (e) => {
     const dataToSend = new FormData();
     dataToSend.append("nama", formData.nama);
     dataToSend.append("kategori", formData.kategori);
-    // CATATAN: Pastikan backend Anda mengekspektasikan key "desc", bukan "deskripsi"
     dataToSend.append("desc", formData.desc); 
     dataToSend.append("bahan", formData.bahan);
     dataToSend.append("cara", formData.cara);
     
     if (fileFoto) {
-        // CATATAN: Key "foto" harus sama persis dengan yang ada di upload.single('foto') di backend
         dataToSend.append("foto", fileFoto); 
     }
 
     try {
-        // Untuk FormData, disarankan membiarkan Axios mengatur Content-Type secara otomatis 
-        // bersama dengan boundary-nya. Menghapus konfigurasi manual seringkali menyelesaikan masalah.
         if (modalType === "add") {
             await axios.post(API_URL, dataToSend);
         } else {
             await axios.patch(`${API_URL}/${selectedId}`, dataToSend);
         }
         
-        // Bersihkan objek URL setelah sukses
         if (previewUrl && !previewUrl.startsWith('http')) {
             URL.revokeObjectURL(previewUrl);
         }
@@ -107,7 +100,6 @@ const handleSubmit = async (e) => {
         fetchResep();
     } catch (error) {
         console.error("Gagal menyimpan data:", error);
-        // Tampilkan pesan error dari backend jika ada untuk mempermudah debugging
         alert(error.response?.data?.message || "Proses gagal. Periksa kembali kelengkapan data.");
     }
 };
